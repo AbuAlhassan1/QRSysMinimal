@@ -1,0 +1,25 @@
+{% extends 'page.html' %}
+{% block Content %}
+<link rel="stylesheet" href="{{ request.url_for('static', path='css/base.css') }}">
+<link rel="stylesheet" href="{{ request.url_for('static', path='css/page3.css') }}">
+<div class="page3">
+    <style>
+        img{
+            width: 500px;
+        }
+        .page{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <div class="page">
+        <h1>ملحق رقم 01</h1>
+        <h1>التصميم الكلي للمشروع</h1>
+        <img src="{{ request.url_for('static', path='photos/design.jpeg') }}" alt="Photo Not Found">
+    </div>
+
+    
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'page.html' %}
+{% block Content %}
+<link rel="stylesheet" href="{{ request.url_for('static', path='css/base.css') }}">
+<link rel="stylesheet" href="{{ request.url_for('static', path='css/page3.css') }}">
+<div class="page3">
+    <style>
+        .page{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .payment , .notes{
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: center;
+            width: 100%;
+        }
+        .payment li{
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .notes li{
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .signatures{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .first , .second{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <div class="page">
+        <h1>ملحق رقم 05</h1>
+        <h1>‌آلية التسديد</h1>
+        <div class="payment">
+            <ul>
+                <li>مساحة الوحدة السكنية : {{ data.area }}م<sup>2</sup></li>
+                <li>سعر المتر المربع : {{ data.price }}</li>
+                <li>السعر الكلي : {{ data.price * data.area }}</li>
+            </ul>
+        </div>
+        <hr style="width: 100%;">
+        <div class="notes">
+            <h1>ملاحظات :</h1>
+            <ol>
+                <li>يتم فرض غرامات تأخيريه على الطرف الثاني في حال تأخر عن تسديد الدفعات التي بذمته حسب شروط العقد في بند التزامات الطرف الثاني الفقرة ثالثاً منه.</li>
+                <li>في حال عدم الالتزام بتسديد المستحقات المالية بذمة الطرف الثاني يتم توجيه إنذار للتسديد خلال مدة أقصاها (7 أيام) وبخلافة يتم فسخ العقد دون الحاجة إلى أعذار أو إنذار أو استصدار حكم قضائي.</li>
+                <li>يلتزم الطرف الثاني بإتمام آلية تسديد مبلغ القرض من المصرف العقاري واستلام وصل استلام الصك من قبل الطرف الأول وخلال مدة (أسبوعين) وبخلافة يعتبر الطرف الثاني مخل بالتزاماته ويعتبر عقد الوحدة السكنية لاغياً دون الحاجة إلى أعذار أو إنذار أو استصدار حكم قضائي.</li>
+            </ol>
+        </div>
+        <div class="signatures">
+            <div class="first">
+                <h1>الطرف الأول</h1>
+                <h2>السيد / السيدة : {{ data.name}}</h2>
+            </div>
+            <div class="second">
+                <h1>الطرف الثاني</h1>
+                <h2>شركة بەرەو لوتکە (نحو القمة)
+                    المفوض</h2>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+{% endblock %}

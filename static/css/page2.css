@@ -1,0 +1,78 @@
+.page2 {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.4;
+    color: #333;
+    padding: 10px;
+    font-size: 12px;
+    direction: rtl;
+    text-align: right;
+}
+
+.page2 .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 11px;
+    flex-direction: row-reverse;
+}
+
+.page2 .bismillah {
+    text-align: center;
+    font-size: 18px;
+    margin: 10px 0;
+    color: #2c3e50;
+}
+
+.page2 .section-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin: 10px 0 5px;
+    color: #2c3e50;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 3px;
+    text-align: right;
+}
+
+.page2 .c1, .page2 .c2, .page2 .c3, .page2 .c4, .page2 .c5 {
+    margin-bottom: 8px;
+    text-align: justify;
+    text-align-last: right;
+}
+
+.page2 table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0;
+    font-size: 11px;
+    direction: rtl;
+}
+
+.page2 table td {
+    padding: 4px;
+    border: 1px solid #ddd;
+    text-align: right;
+}
+
+.page2 table tr td:first-child {
+    font-weight: bold;
+    background-color: #f8f9fa;
+    width: 30%;
+    text-align: right;
+}
+
+.page2 table tr td:last-child {
+    width: 70%;
+    text-align: right;
+}
+
+/* Responsive adjustments */
+@media print {
+    .page2 {
+        padding: 0;
+    }
+    
+    .page2 table {
+        page-break-inside: avoid;
+    }
+} 

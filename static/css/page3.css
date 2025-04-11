@@ -1,0 +1,100 @@
+.page3 {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.4;
+    color: #333;
+    padding: 10px;
+    font-size: 12px;
+    direction: rtl;
+    text-align: right;
+}
+
+.page3 .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.page3 .bismillah {
+    text-align: center;
+    font-size: 18px;
+    margin: 10px 0;
+    color: #2c3e50;
+}
+
+.page3 .note {
+    font-weight: bold;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-right: 3px solid #2c3e50;
+}
+
+.page3 .section-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin: 10px 0 5px;
+    color: #2c3e50;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 3px;
+}
+
+.page3 .c1, .page3 .c2 {
+    margin-bottom: 8px;
+    text-align: justify;
+    text-align-last: right;
+}
+
+.page3 table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0;
+    font-size: 11px;
+    direction: rtl;
+    table-layout: fixed;
+}
+
+.page3 table tr {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.page3 table td {
+    padding: 2px 4px;
+    border: 1px solid #ddd;
+    text-align: right;
+    flex: 1;
+    min-width: 45%;
+    box-sizing: border-box;
+}
+
+.page3 table tr td:first-child {
+    font-weight: bold;
+    background-color: #f8f9fa;
+    text-align: right;
+    padding-right: 8px;
+    margin-left: 2%;
+}
+
+.page3 table tr td:last-child {
+    text-align: right;
+    padding-left: 8px;
+    margin-right: 2%;
+}
+
+/* Responsive adjustments */
+@media print {
+    .page3 {
+        padding: 0;
+    }
+    
+    .page3 table {
+        page-break-inside: avoid;
+    }
+    
+    .page3 table td {
+        white-space: normal;
+        overflow: visible;
+    }
+} 

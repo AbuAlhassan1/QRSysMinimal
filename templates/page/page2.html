@@ -1,0 +1,78 @@
+{% extends 'page.html' %}
+{% block Content %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/base.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/page2.css') }}">
+<div class="page2">
+    <div class="header">
+        <div>التاريخ : {{ data.date }}</div>
+        <div>العدد : {{ data.id }}</div>
+    </div>
+
+    <div class="bismillah">بسم الله الرحمن الرحيم</div>
+
+    <div class="section-title">التمهيد:</div>
+    <div class="c1">تأسست شركتنا وفقا لأحكام قانون الشركات رقم 21883 لسنة 2015 المعدل، وهي خاضعة لأحكام قانون الاستثمار رقم 13 لسنة 2006، وكذلك لنظام بيع وشراء عقارات وأراضي الدولة والقطاع العام. ويكمن غرض الشركة الأساسي في الاستثمار العقاري وتنمية الأراضي من خلال البناء عليها وبيعها.</div>
+
+    <div class="c2">نظرا لأن شــركتنا تمتلك مجمع أبراج القمة، القائم في منطقة الســـديدية - تقاطع الدرويش على القطعـة المرقمـة (1/45/1982 الخر)، والممنوح إجازة اســـتثمارية برقم (290/2017) والصــــادرة عن هيئة اســـتثار بغداد بتاريخ 24/10/2010، فإن الشركة تعتزم بيع الوحدات السكنية التابعة لهذا المشروع.</div>
+
+    <div class="c3">يتم البيع نقدا، بالتقســـيط، أو من خلال تمويل المصــــرف العقـاري العراقي، وذلك وفقا لرغبة الطرف الثـاني. وتتم الإجراءات بما يتماشــــى مع قانون الاســـتثمار رقم 13 لســــنة 2006 المعدل، ونظام بيع عقارات الدولة والقطاع العام لأغراض الاستثمار رقم 7 لسنة 2007 المعدل، فيما يخص إنشاء المجمعات السكنية المباعة حديثاً.</div>
+
+    <div class="section-title">الطرف الأول:</div>
+    <div class="c4">شركة بەرەو لوتکە (نحو القمة) للمقاولات والخدمات العامة والاستثمارات العقارية المحدودة الممثلة بمديرها المفوض السيد (علي عبد الرحمن أبو بكر).</div>
+    <div class="c5">اسم المشروع: أبراج القمة.</div>
+
+    <table>
+        <tr>
+            <td>الموقع: منطقة السيدية. تقاطع الدرويش.</td>
+        </tr>
+    </table>
+
+    <div class="section-title">الطرف الثاني:</div>
+    <table>
+        <tr>
+            <td>السيد، السيدة</td>
+            <td>{{ data.customer_name }}</td>
+            <td>رقم البطاقة الموحدة</td>
+            <td>{{ data.unified_card_number }}</td>
+        </tr>
+        <tr>
+            <td>رقم الهوية :</td>
+            <td>{{ data.id_number }}</td>
+            <td>رقم السجل :</td>
+            <td>{{ data.registry_number }}</td>
+        </tr>
+        <tr>
+            <td>رقم الصحيفة :</td>
+            <td>{{ data.newspaper_number }}</td>
+            <td>تاريخ الإصدار</td>
+            <td>{{ data.issue_date }}</td>
+        </tr>
+        <tr>
+            <td>عنوان بطاقة السكن</td>
+            <td colspan="3">محلة: {{ data.district }} زقاق: {{ data.street }} دار: {{ data.house }}</td>
+        </tr>
+        <tr>
+            <td>رقم الهاتف</td>
+            <td>{{ data.phone_number }}</td>
+            <td>العنوان الوظيفي</td>
+            <td>{{ data.job_title }}</td>
+        </tr>
+    </table>
+
+    <div class="section-title">في حالة تعذر الوصول إلى المشتري يتم الاتصال على:</div>
+    <table>
+        <tr>
+            <td>اسم الشخص البديل</td>
+            <td>{{ data.alt_person_name }}</td>
+            <td>صلة القرابة</td>
+            <td>{{ data.relationship }}</td>
+        </tr>
+        <tr>
+            <td>رقم الشخص البديل</td>
+            <td>{{ data.alt_person_number }}</td>
+            <td>عنوان الشاخص البديل</td>
+            <td>محلة: {{ data.alt_district }} زقاق: {{ data.alt_street }} دار: {{ data.alt_house }}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

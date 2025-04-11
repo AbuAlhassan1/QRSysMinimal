@@ -1,0 +1,230 @@
+/* This file is kept for backward compatibility */
+/* All styles have been moved to separate files in the css directory */
+
+body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+.a4-page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    background-image: url('/static/Picture1.png');  
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.content {
+    position: absolute;
+    top: 250px; /* Adjusted to start below the header area */
+    left: 50px;
+    right: 50px;
+    bottom: 150px; /* Adjusted to end above the footer area */
+    background-color: transparent;
+    padding: 20px;
+}
+
+.page1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.page1 div {
+    background-color: rgb(214, 214, 214);
+    outline: 1px solid black;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 150px;
+}
+
+/* Page 2 Styles */
+.page2 {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.4;
+    color: #333;
+    padding: 10px;
+    font-size: 12px;
+    direction: rtl;
+    text-align: right;
+}
+
+.page2 .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 11px;
+    flex-direction: row-reverse;
+}
+
+.page2 .bismillah {
+    text-align: center;
+    font-size: 18px;
+    margin: 10px 0;
+    color: #2c3e50;
+}
+
+.page2 .section-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin: 10px 0 5px;
+    color: #2c3e50;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 3px;
+    text-align: right;
+}
+
+.page2 .c1, .page2 .c2, .page2 .c3, .page2 .c4, .page2 .c5 {
+    margin-bottom: 8px;
+    text-align: justify;
+    text-align-last: right;
+}
+
+.page2 table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0;
+    font-size: 11px;
+    direction: rtl;
+}
+
+.page2 table td {
+    padding: 4px;
+    border: 1px solid #ddd;
+    text-align: right;
+}
+
+.page2 table tr td:first-child {
+    font-weight: bold;
+    background-color: #f8f9fa;
+    width: 30%;
+    text-align: right;
+}
+
+.page2 table tr td:last-child {
+    width: 70%;
+    text-align: right;
+}
+
+/* Responsive adjustments */
+@media print {
+    .page2 {
+        padding: 0;
+    }
+    
+    .page2 table {
+        page-break-inside: avoid;
+    }
+}
+
+/* Page 3 Styles */
+.page3 {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.4;
+    color: #333;
+    padding: 10px;
+    font-size: 12px;
+    direction: rtl;
+    text-align: right;
+}
+
+.page3 .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.page3 .bismillah {
+    text-align: center;
+    font-size: 18px;
+    margin: 10px 0;
+    color: #2c3e50;
+}
+
+.page3 .note {
+    font-weight: bold;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-right: 3px solid #2c3e50;
+}
+
+.page3 .section-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin: 10px 0 5px;
+    color: #2c3e50;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 3px;
+}
+
+.page3 .c1, .page3 .c2 {
+    margin-bottom: 8px;
+    text-align: justify;
+    text-align-last: right;
+}
+
+.page3 table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0;
+    font-size: 11px;
+    direction: rtl;
+    table-layout: fixed;
+}
+
+.page3 table tr {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.page3 table td {
+    padding: 2px 4px;
+    border: 1px solid #ddd;
+    text-align: right;
+    flex: 1;
+    min-width: 45%;
+    box-sizing: border-box;
+}
+
+.page3 table tr td:first-child {
+    font-weight: bold;
+    background-color: #f8f9fa;
+    text-align: right;
+    padding-right: 8px;
+    margin-left: 2%;
+}
+
+.page3 table tr td:last-child {
+    text-align: right;
+    padding-left: 8px;
+    margin-right: 2%;
+}
+
+/* Responsive adjustments */
+@media print {
+    .page3 {
+        padding: 0;
+    }
+    
+    .page3 table {
+        page-break-inside: avoid;
+    }
+    
+    .page3 table td {
+        white-space: normal;
+        overflow: visible;
+    }
+}

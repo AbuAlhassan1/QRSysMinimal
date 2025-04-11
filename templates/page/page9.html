@@ -1,0 +1,58 @@
+{% extends 'page.html' %}
+{% block Content %}
+<link rel="stylesheet" href="{{ request.url_for('static', path='css/base.css') }}">
+<link rel="stylesheet" href="{{ request.url_for('static', path='css/page3.css') }}">
+<div class="page3">
+    <style>
+        .details img{
+            height: 300px;
+        }
+        .page{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        .details{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        li{
+            font-weight: bold;
+        }
+        .sales{
+            height: 200px;
+        }
+    </style>
+    <div class="page">
+        <h1>ملحق رقم 04</h1>
+        <h1>مواصفات الوحدة المباعة</h1>
+        <div class="details">
+            <div>
+                <h1>تتالف الشقة للنمط A</h1>
+                <ol>
+                    <li>مدخل</li>
+                    <li>موزع للغرف و الصالة</li>
+                    <li>مطبخ حار، مطبخ بارد</li>
+                    <li>صالة جلوس</li>
+                    <li>صالة طعام</li>
+                    <li>حمام (1) رئيسي للعائلة</li>
+                    <li>غرفة نوم رئيسية + حمام</li>
+                    <li>غرفة نوم للأطفال عدد (2)</li>
+                    <li>شرفة خارجية لغرفة الماستر</li>
+                    <li>شرفة خارجية لصالة الاستقبال</li>
+                    <li>شرفة خارجية للمطبخ</li>
+                </ol>
+            </div>
+            <img src="{{ request.url_for('static', path='photos/' + data.aptType + 'x' + '.png') }}" alt="Photo Not Found">
+        </div>
+        <img src="{{ request.url_for('static', path='photos/sales.jpeg') }}" alt="Photo Not Found" class="sales">
+    </div>
+
+    
+</div>
+{% endblock %}
