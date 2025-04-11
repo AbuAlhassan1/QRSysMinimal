@@ -27,7 +27,7 @@ def read_pages(request : Request, no : int, apt_id : int) -> Any:
             "id": str(no).zfill(3)+ " : " + "العدد",
             "buildng": str(obj.building)+ " | " + "العمارة",
             "floor": str(obj.floor)+ " | " + "الطابق",
-            "apartment": str(obj.apt_type)+ " | " + "الشقة"
+            "apartment": str(obj.apt_no)+ " | " + "الشقة"
         }
     return templates.TemplateResponse("page/page1.html", {"request": request, "data": data})
 
