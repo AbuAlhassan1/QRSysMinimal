@@ -2,7 +2,10 @@ import logging
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Dict
+import qrcode
+import base64
+from io import BytesIO
 
 import emails  # type: ignore
 import jwt
@@ -121,3 +124,53 @@ def verify_password_reset_token(token: str) -> str | None:
         return str(decoded_token["sub"])
     except InvalidTokenError:
         return None
+
+
+def generate_qr_code_with_data(client_data: Dict[str, Any], apartment_data: Dict[str, Any]) -> str:
+    """
+    Generate a QR code containing formatted tabular data of client and apartment information.
+    
+    Args:
+        client_data: Dictionary containing client information
+        apartment_data: Dictionary containing apartment information
+        
+    Returns:
+        Base64 encoded string of the QR code image
+    """
+    # Format the data as a text table instead of JSON
+    formatted_text = "معلومات العميل\n\n"
+    
+    # Add client data in tabular format with RTL alignment
+    for key, value in client_data.items():
+        formatted_text += f"{key}: {value}\n"
+    
+    formatted_text += "\nمعلومات الشقة\n\n"
+    
+    # Add apartment data in tabular format with RTL alignment
+    for key, value in apartment_data.items():
+        formatted_text += f"{key}: {value}\n"
+    
+    # Create QR code with balanced properties for data capacity and readability
+    qr = qrcode.QRCode(
+        version=None,  # Auto-determine based on content
+        error_correction=qrcode.constants.ERROR_CORRECT_M,  # Medium error correction
+        box_size=10,
+        border=4,
+    )
+    
+    qr.add_data(formatted_text)
+    qr.make(fit=True)
+    
+    # Create an image from the QR Code
+    img = qr.make_image(fill_color="black", back_color="white")
+    
+    # Save the image to a BytesIO object
+    buffer = BytesIO()
+    img.save(buffer)
+    buffer.seek(0)
+    
+    # Convert to base64 for embedding in HTML
+    img_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+    data_uri = f"data:image/png;base64,{img_base64}"
+    
+    return data_uri

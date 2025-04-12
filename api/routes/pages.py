@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Dict
 from core import db
 from models import ApartmentInfo, ClientInfo
 from fastapi import APIRouter, HTTPException, Request, Response
@@ -12,6 +12,7 @@ import asyncio
 from playwright.async_api import async_playwright
 from api.deps import CurrentUser
 from sqlmodel import Session, select
+from utils import generate_qr_code_with_data
 
 router = APIRouter(prefix="/pages", tags=["pages"])
 
@@ -20,14 +21,56 @@ templates = Jinja2Templates(directory="templates")
 @router.get("/")
 def read_pages(request : Request, no : int, apt_id : int) -> Any:
     with Session(db.engine) as session:
-        obj = session.exec(select(ApartmentInfo).where(ApartmentInfo.id == apt_id)).first()
-        if not obj:
+        apt_info = session.exec(select(ApartmentInfo).where(ApartmentInfo.id == apt_id)).first()
+        if not apt_info:
             raise HTTPException(status_code=404, detail="Apartment not found")
+        
+        # Get client information
+        client_info = session.exec(select(ClientInfo).where(ClientInfo.apt_id == apt_id)).first()
+        if not client_info:
+            raise HTTPException(status_code=404, detail="Client not found")
+        
+        # Prepare data for QR code - Client data first in Arabic
+        client_data = {
+            "معرف": client_info.id,
+            "رقم": client_info.no,
+            "الاسم": client_info.name,
+            "رقم الهوية": client_info.id_no,
+            "رقم الهاتف": client_info.phone_number,
+            "المهنة": client_info.job_title,
+            "تاريخ الإصدار": str(client_info.issue_date),
+            "رقم السجل": client_info.registry_no,
+            "رقم الصحيفة": client_info.newspaper_no,
+            "المحلة": client_info.m,
+            "الزقاق": client_info.z,
+            "الدار": client_info.d,
+            "اسم البديل": client_info.alt_name,
+            "صلة القرابة": client_info.alt_kinship,
+            "هاتف البديل": client_info.alt_phone,
+            "تاريخ الإنشاء": str(client_info.created_at)
+        }
+        
+        # Apartment data in Arabic
+        apartment_data = {
+            "معرف": apt_info.id,
+            "العمارة": apt_info.building,
+            "الطابق": apt_info.floor,
+            "رقم الشقة": apt_info.apt_no,
+            "المساحة": apt_info.area,
+            "سعر المتر": apt_info.meter_price,
+            "نوع الشقة": apt_info.apt_type,
+            "السعر الكلي": apt_info.area * apt_info.meter_price
+        }
+        
+        # Generate QR code with client data first
+        qr_code_data_uri = generate_qr_code_with_data(client_data, apartment_data)
+        
         data = {
             "id": str(no).zfill(3)+ " : " + "العدد",
-            "buildng": str(obj.building)+ " | " + "العمارة",
-            "floor": str(obj.floor)+ " | " + "الطابق",
-            "apartment": str(obj.apt_no)+ " | " + "الشقة"
+            "buildng": str(apt_info.building)+ " | " + "العمارة",
+            "floor": str(apt_info.floor)+ " | " + "الطابق",
+            "apartment": str(apt_info.apt_no)+ " | " + "الشقة",
+            "qr_code": qr_code_data_uri
         }
     return templates.TemplateResponse("page/page1.html", {"request": request, "data": data})
 
