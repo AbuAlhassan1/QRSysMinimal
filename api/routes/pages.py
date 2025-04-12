@@ -33,7 +33,7 @@ def read_pages(request : Request, no : int, apt_id : int) -> Any:
         # Prepare data for QR code - Client data first in Arabic
         client_data = {
             "معرف": client_info.id,
-            "رقم": client_info.no,
+            "العدد": client_info.no,
             "الاسم": client_info.name,
             "رقم الهوية": client_info.id_no,
             "رقم الهاتف": client_info.phone_number,
@@ -58,7 +58,6 @@ def read_pages(request : Request, no : int, apt_id : int) -> Any:
             "رقم الشقة": apt_info.apt_no,
             "المساحة": apt_info.area,
             "سعر المتر": apt_info.meter_price,
-            "نوع الشقة": apt_info.apt_type,
             "السعر الكلي": apt_info.area * apt_info.meter_price
         }
         
