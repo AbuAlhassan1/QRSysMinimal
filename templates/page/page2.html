@@ -26,53 +26,21 @@
             <td>الموقع: منطقة السيدية. تقاطع الدرويش.</td>
         </tr>
     </table>
-
+<div class="t2">
     <div class="section-title">الطرف الثاني:</div>
-    <table>
-        <tr>
-            <td>السيد، السيدة</td>
-            <td>{{ data.customer_name }}</td>
-            <td>رقم البطاقة الموحدة</td>
-            <td>{{ data.unified_card_number }}</td>
-        </tr>
-        <tr>
-            <td>رقم الهوية :</td>
-            <td>{{ data.id_number }}</td>
-            <td>رقم السجل :</td>
-            <td>{{ data.registry_number }}</td>
-        </tr>
-        <tr>
-            <td>رقم الصحيفة :</td>
-            <td>{{ data.newspaper_number }}</td>
-            <td>تاريخ الإصدار</td>
-            <td>{{ data.issue_date }}</td>
-        </tr>
-        <tr>
-            <td>عنوان بطاقة السكن</td>
-            <td colspan="3">محلة: {{ data.district }} زقاق: {{ data.street }} دار: {{ data.house }}</td>
-        </tr>
-        <tr>
-            <td>رقم الهاتف</td>
-            <td>{{ data.phone_number }}</td>
-            <td>العنوان الوظيفي</td>
-            <td>{{ data.job_title }}</td>
-        </tr>
-    </table>
-
+    <div class="tf2">السيد، السيدة : {{ data.customer_name }}</div>
+    <div class="tf2">رقم البطاقة الموحدة : {{ data.unified_card_number }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; رقم الهوية : {{ data.id_number}}</div>
+    <div class="tf2">تاريخ الاصدار : {{ data.issue_date }}</div>
+    <div class="tf2">رقم السجل : {{ data.registry_number }}</div>
+    <div class="tf2">رقم الصحيفة : {{ data.newspaper_number }}</div>
+    <div class="tf2">عنوان بطاقة السكن : محلة: {{ data.district }} زقاق: {{ data.street }} دار: {{ data.house }}</div>
+    <div class="tf2">رقم الهاتف : {{ data.phone_number }}</div>
+    <div class="tf2">العنوان الوظيفي : {{ data.job_title }}</div>
     <div class="section-title">في حالة تعذر الوصول إلى المشتري يتم الاتصال على:</div>
-    <table>
-        <tr>
-            <td>اسم الشخص البديل</td>
-            <td>{{ data.alt_person_name }}</td>
-            <td>صلة القرابة</td>
-            <td>{{ data.relationship }}</td>
-        </tr>
-        <tr>
-            <td>رقم الشخص البديل</td>
-            <td>{{ data.alt_person_number }}</td>
-            <td>عنوان الشاخص البديل</td>
-            <td>محلة: {{ data.alt_district }} زقاق: {{ data.alt_street }} دار: {{ data.alt_house }}</td>
-        </tr>
-    </table>
+    <div class="tf2">اسم الشخص البديل : {{ data.alt_person_name }}</div>
+    <div class="tf2">صلة القرابة : {{ data.relationship }}</div>
+    <div class="tf2">رقم الشخص البديل : {{ data.alt_person_number }}</div>
+    <div class="tf2">عنوان الشاخص البديل : محلة: {{ data.alt_district }} زقاق: {{ data.alt_street }} دار: {{ data.alt_house }}</div>
+</div>
 </div>
 {% endblock %}

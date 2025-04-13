@@ -78,3 +78,65 @@ def create_apartment_client_payment(
     except Exception as e:
         session.rollback()
         raise HTTPException(status_code=400, detail=f"Error creating records: {str(e)}")
+
+
+@router.delete("/apartment-client-payment/{client_id}", response_model=ApartmentClientPaymentResponse)
+def delete_apartment_client_payment(
+    *,
+    session: SessionDep,
+    current_user: CurrentUser,
+    client_id: int
+) -> Any:
+    """
+    Delete apartment, client, and payment in a single transaction based on client ID.
+    """
+    # Check permissions
+    if not current_user.is_superuser:
+        raise HTTPException(status_code=403, detail="Not enough permissions")
+    
+    try:
+        # Find the client first
+        client = session.exec(
+            select(ClientInfo).where(ClientInfo.id == client_id)
+        ).first()
+        if not client:
+            raise HTTPException(status_code=404, detail="Client not found")
+        
+        # Find and delete all associated payments
+        payments = session.exec(
+            select(Payment).where(Payment.client_id == client_id)
+        ).all()
+        payment_id = 0
+        for payment in payments:
+            payment_id = payment.id  # Store the last payment ID for response
+            session.delete(payment)
+        session.flush()
+        
+        # Get apartment ID before deleting client
+        apartment_id = client.apt_id
+        
+        # Delete the client
+        session.delete(client)
+        session.flush()
+        
+        # Find and delete apartment if no other clients are using it
+        remaining_clients = session.exec(
+            select(ClientInfo).where(ClientInfo.apt_id == apartment_id)
+        ).all()
+        
+        if not remaining_clients:  # Only delete apartment if no other clients are using it
+            apartment = session.get(ApartmentInfo, apartment_id)
+            if apartment:
+                session.delete(apartment)
+        
+        # Commit the transaction
+        session.commit()
+        
+        return ApartmentClientPaymentResponse(
+            apartment_id=apartment_id,
+            client_id=client_id,
+            payment_id=payment_id
+        )
+    except Exception as e:
+        session.rollback()
+        raise HTTPException(status_code=400, detail=f"Error deleting records: {str(e)}")

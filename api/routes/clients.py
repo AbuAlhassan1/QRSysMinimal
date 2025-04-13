@@ -54,20 +54,20 @@ def filter_clients(
         filters.append(ClientInfo.name.contains(name))
     
     if id_no:
-        filters.append(ClientInfo.id_no == id_no)
+        filters.append(ClientInfo.id_no.contains(str(id_no)))
     
     if phone_number:
         filters.append(ClientInfo.phone_number.contains(phone_number))
     
     # Apartment filters
     if building:
-        filters.append(ApartmentInfo.building == building)
+        filters.append(ApartmentInfo.building.contains(str(building)))
     
     if floor:
-        filters.append(ApartmentInfo.floor == floor)
+        filters.append(ApartmentInfo.floor.contains(str(floor)))
     
     if apt_no:
-        filters.append(ApartmentInfo.apt_no == apt_no)
+        filters.append(ApartmentInfo.apt_no.contains(str(apt_no)))
     
     # Apply all filters if any exist
     if filters:
