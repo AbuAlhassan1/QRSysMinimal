@@ -2,11 +2,39 @@
 {% block Content %}
 <div class="page1">
     
+
+    <style>
+        section{
+            display: flex;;
+            align-items: center;
+            justify-content: center;
+        }
+        .col{
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            justify-content: center;
+        }
+    </style>
     <div>
         <span>{{ data.id }}</span>
-        <h1>{{ data.buildng }}</h1>
-        <h1>{{ data.floor }}</h1>
-        <h1>{{ data.apartment }}</h1>
+        <section>
+            <section class='col'>
+                <h1>{{ data.buildng }}</h1>
+                <h1>{{ data.floor }}</h1>
+                <h1>{{ data.apartment }}</h1>
+            </section>
+            <section class='col'>
+                <h1>&nbsp;&nbsp;|&nbsp;&nbsp;</h1>
+                <h1>&nbsp;&nbsp;|&nbsp;&nbsp;</h1>
+                <h1>&nbsp;&nbsp;|&nbsp;&nbsp;</h1>
+            </section>
+            <section class='col'>
+                <h1>العمارة</h1>
+                <h1>الطابق</h1>
+                <h1>الشقة</h1>
+            </section>
+        </section>
     </div>
 
     <div class="qr">

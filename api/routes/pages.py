@@ -65,10 +65,10 @@ def read_pages(request : Request, no : int, apt_id : int) -> Any:
         qr_code_data_uri = generate_qr_code_with_data(client_data, apartment_data)
         
         data = {
-            "id": str(no).zfill(3)+ " : " + "العدد",
-            "buildng": str(apt_info.building)+ " | " + "العمارة",
-            "floor": str(apt_info.floor)+ " | " + "الطابق",
-            "apartment": str(apt_info.apt_no)+ " | " + "الشقة",
+            "id": f"{str(no).zfill(3)} : العدد",
+            "buildng": f"{str(apt_info.building)}",
+            "floor": f"{str(apt_info.floor)}",
+            "apartment": f"{str(apt_info.apt_no)}",
             "qr_code": qr_code_data_uri
         }
     return templates.TemplateResponse("page/page1.html", {"request": request, "data": data})
@@ -168,8 +168,9 @@ def read_page10(request : Request, apt_id : int) -> Any:
         if not apartment_info:
             raise HTTPException(status_code=404, detail="Apartment not found")
         data = {
-            'price' : apartment_info.meter_price,
-            'area' : apartment_info.area
+            'price': "{:,}".format(apartment_info.meter_price),
+            'area' : "{:,}".format(apartment_info.area),
+            'full' : "{:,}".format(apartment_info.meter_price * apartment_info.area)
         }
     return templates.TemplateResponse("page/page10.html", {"request": request , 'data': data})
 

@@ -41,14 +41,32 @@
     </style>
     <div class="page">
         <h1>ملحق رقم 05</h1>
-        <h1>‌آلية التسديد</h1>
-        <div class="payment">
-            <ul>
-                <li>مساحة الوحدة السكنية : {{ data.area }}م<sup>2</sup></li>
-                <li>سعر المتر المربع : {{ data.price }}</li>
-                <li>السعر الكلي : {{ data.price * data.area }}</li>
+        <h1>سعر العقار</h1>
+        <div class="payment" style="font-family: sans-serif; max-width: 600px;">
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <!-- Row 1 -->
+                <li style="display: flex; align-items: baseline; margin-bottom: 4px;">
+                    <span style="width: 160px; text-align: right;">مساحة الوحدة السكنية</span>
+                    <span style="width: 10px; text-align: center;">:</span>
+                    <span style="flex: 1; text-align: right; direction: rtl;">{{ data.area }}م<sup>2</sup></span>
+                </li>
+        
+                <!-- Row 2 -->
+                <li style="display: flex; align-items: baseline; margin-bottom: 4px;">
+                    <span style="width: 160px; text-align: right;">سعر المتر المربع</span>
+                    <span style="width: 10px; text-align: center;">:</span>
+                    <span style="flex: 1; text-align: right; direction: rtl;">{{ data.price }}&nbsp;دينار عراقي</span>
+                </li>
+        
+                <!-- Row 3 -->
+                <li style="display: flex; align-items: baseline;">
+                    <span style="width: 160px; text-align: right;">السعر الكلي</span>
+                    <span style="width: 10px; text-align: center;">:</span>
+                    <span style="flex: 1; text-align: right; direction: rtl;">{{ data.full }}&nbsp;دينار عراقي</span>
+                </li>
             </ul>
         </div>
+        
         <hr style="width: 100%;">
         <div class="notes">
             <h1>ملاحظات :</h1>

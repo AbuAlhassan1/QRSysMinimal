@@ -9,28 +9,38 @@
     </div>
 
     <div class="bismillah">بسم الله الرحمن الرحيم</div>
-
-    <div class="note">
-        ملاحظة: يعتبر الشخص البديل عوناً رسمياً لغرض التبليغ ولا يجوز الاعتذار بعدم العلم بالتبليغ أو عدم الالتزام باستلامه من الشخص البديل ويقر الطرف الثاني بأن الشخص البديل على علم تام باختياره لهذا الغرض وعليه. ولكل ما تقدم باشر الطرفان بتوقيع هذا العقد بكامل إرادتهما وأهليتهما القانونية.
-    </div>
     
     <div class="c1">تم الاتفاق بين الطرفين على أن يقوم الطرف الأول ببيع الوحدة السكنية إلى الطرف الثاني:</div>
     
     <div class="section-title">❖ الوحدة السكنية محل العقد:</div>
-    <table>
-        <tr>
-            <td>رقم الشقة</td>
-            <td>{{ data.apartment_number }}</td>
-            <td>الطابق</td>
-            <td>{{ data.floor }}</td>
-        </tr>
-        <tr>
-            <td>العمارة</td>
-            <td>{{ data.building }}</td>
-            <td>المساحة</td>
-            <td>{{ data.area }} M² لغرض السكن العائلي كما يتناسب مع غرض المشروع</td>
-        </tr>
-    </table>
+    <div style="display: flex; flex-direction: column; font-family: sans-serif; gap: 4px; max-width: 800px;">
+
+        <!-- Row 1 -->
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 100px; text-align: right;">رقم الشقة</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="width: 250px; text-align: right; direction: rtl;">{{ data.apartment_number }}</div>
+      
+          <div style="width: 80px; text-align: right;">الطابق</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.floor }}</div>
+        </div>
+      
+        <!-- Row 2 -->
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 100px; text-align: right;">العمارة</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="width: 250px; text-align: right; direction: rtl;">{{ data.building }}</div>
+      
+          <div style="width: 80px; text-align: right;">المساحة</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="flex: 1; text-align: right; direction: rtl;">
+            {{ data.area }} M² لغرض السكن العائلي كما يتناسب مع غرض المشروع
+          </div>
+        </div>
+      
+      </div>
+      
     
     <div class="section-title">❖ التزامات الطرف الثاني:</div>
     <div class="c2">

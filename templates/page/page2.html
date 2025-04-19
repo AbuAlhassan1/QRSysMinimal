@@ -28,19 +28,99 @@
     </table>
 <div class="t2">
     <div class="section-title">الطرف الثاني:</div>
-    <div class="tf2">السيد، السيدة : {{ data.customer_name }}</div>
-    <div class="tf2">رقم البطاقة الموحدة : {{ data.unified_card_number }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; رقم الهوية : {{ data.id_number}}</div>
-    <div class="tf2">تاريخ الاصدار : {{ data.issue_date }}</div>
-    <div class="tf2">رقم السجل : {{ data.registry_number }}</div>
-    <div class="tf2">رقم الصحيفة : {{ data.newspaper_number }}</div>
-    <div class="tf2">عنوان بطاقة السكن : محلة: {{ data.district }} زقاق: {{ data.street }} دار: {{ data.house }}</div>
-    <div class="tf2">رقم الهاتف : {{ data.phone_number }}</div>
-    <div class="tf2">العنوان الوظيفي : {{ data.job_title }}</div>
-    <div class="section-title">في حالة تعذر الوصول إلى المشتري يتم الاتصال على:</div>
-    <div class="tf2">اسم الشخص البديل : {{ data.alt_person_name }}</div>
-    <div class="tf2">صلة القرابة : {{ data.relationship }}</div>
-    <div class="tf2">رقم الشخص البديل : {{ data.alt_person_number }}</div>
-    <div class="tf2">عنوان الشاخص البديل : محلة: {{ data.alt_district }} زقاق: {{ data.alt_street }} دار: {{ data.alt_house }}</div>
+    <div style="display: flex; flex-direction: column; font-family: sans-serif; gap: 2px; max-width: 800px;">
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 140px; text-align: right;">السيد، السيدة</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.customer_name }}</div>
+        </div>
+      
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 140px; text-align: right;">رقم البطاقة الموحدة</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.unified_card_number }}</div>
+        </div>
+      
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 140px; text-align: right;">رقم الهوية</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.id_number }}</div>
+        </div>
+      
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 140px; text-align: right;">تاريخ الاصدار</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.issue_date }}</div>
+        </div>
+      
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 140px; text-align: right;">رقم السجل</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.registry_number }}</div>
+        </div>
+      
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 140px; text-align: right;">رقم الصحيفة</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.newspaper_number }}</div>
+        </div>
+      
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 140px; text-align: right;">عنوان بطاقة السكن</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="flex: 1; text-align: right; direction: rtl;">
+            محلة: {{ data.district }} &nbsp;&nbsp;&nbsp;&nbsp;زقاق: {{ data.street }} &nbsp;&nbsp;&nbsp;&nbsp;دار: {{ data.house }}
+          </div>
+        </div>
+      
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 140px; text-align: right;">رقم الهاتف</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.phone_number }}</div>
+        </div>
+      
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 140px; text-align: right;">العنوان الوظيفي</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.job_title }}</div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 12px; font-weight: bold; font-size: 1em;">في حالة تعذر الوصول إلى المشتري يتم الاتصال على:</div>
+      
+      <div style="display: flex; flex-direction: column; font-family: sans-serif; gap: 2px; max-width: 800px;">
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 140px; text-align: right;">اسم الشخص البديل</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.alt_person_name }}</div>
+        </div>
+      
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 140px; text-align: right;">صلة القرابة</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.relationship }}</div>
+        </div>
+      
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 140px; text-align: right;">رقم الشخص البديل</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.alt_person_number }}</div>
+        </div>
+      
+        <div style="display: flex; align-items: flex-start;">
+          <div style="width: 140px; text-align: right;">عنوان الشاخص البديل</div>
+          <div style="width: 10px; text-align: center;">:</div>
+          <div style="flex: 1; text-align: right; direction: rtl;">
+            محلة: {{ data.alt_district }} &nbsp;&nbsp;&nbsp;&nbsp;زقاق: {{ data.alt_street }} &nbsp;&nbsp;&nbsp;&nbsp;دار: {{ data.alt_house }}
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="note">
+        ملاحظة: يعتبر الشخص البديل عوناً رسمياً لغرض التبليغ ولا يجوز الاعتذار بعدم العلم بالتبليغ أو عدم الالتزام باستلامه من الشخص البديل ويقر الطرف الثاني بأن الشخص البديل على علم تام باختياره لهذا الغرض وعليه. ولكل ما تقدم باشر الطرفان بتوقيع هذا العقد بكامل إرادتهما وأهليتهما القانونية.
+    </div>
+    
 </div>
 </div>
 {% endblock %}
