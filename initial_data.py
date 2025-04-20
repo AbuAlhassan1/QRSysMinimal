@@ -25,7 +25,7 @@ def init() -> None:
     with Session(engine) as session:
         # Initialize the database (creates tables and admin user)
         init_db(session)
-        
+        # return
         # Check if we already have seeded data
         apartment_count = session.exec(select(ApartmentInfo)).all()
         if apartment_count:
@@ -95,7 +95,8 @@ def init() -> None:
                     alt_z=random.randint(1, 5),
                     alt_d=random.randint(1, 5),
                     created_at=date.today(),
-                    apt_id=apt.id
+                    apt_id=apt.id,
+                    is_formal=random.randint(0,1)
                 )
                 session.add(client)
                 clients.append(client)

@@ -6,13 +6,12 @@ body, html {
             padding: 0;
             width: 100%;
             height: 100%;
+
         }
-        
 .a4-page {
     width: 210mm;
     height: 297mm;
     margin: 0 auto;
-    background-image: url('/static/Picture1.png');  
     background-size: cover;
     position: relative;
     overflow: hidden;
@@ -20,10 +19,10 @@ body, html {
 
 .content {
     position: absolute;
-    top: 250px; /* Adjusted to start below the header area */
+    top: 200px; /* Adjusted to start below the header area */
     left: 50px;
     right: 50px;
-    bottom: 150px; /* Adjusted to end above the footer area */
+    bottom: 200px; /* Adjusted to end above the footer area */
     background-color: transparent;
     padding: 20px;
 }
@@ -67,13 +66,11 @@ body, html {
 }
 
 .page1 .qr h2 {
-    font-family: 'Arial', sans-serif;
     color: #333;
     direction: rtl;
 }
 
 .page1 .qr p {
-    font-family: 'Arial', sans-serif;
     color: #666;
     direction: rtl;
 }
@@ -81,11 +78,10 @@ body, html {
 
 /* Page 3 Styles */
 .page3 {
-    font-family: 'Arial', sans-serif;
     line-height: 1.4;
     color: #333;
     padding: 10px;
-    font-size: 12px;
+    font-size: 14px;
     direction: rtl;
     text-align: right;
 }
@@ -95,7 +91,7 @@ body, html {
     justify-content: space-between;
     margin-bottom: 10px;
     font-weight: bold;
-    font-size: 11px;
+    font-size: 14px;
 }
 
 .page3 .bismillah {

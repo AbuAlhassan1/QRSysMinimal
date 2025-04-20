@@ -1,3 +1,4 @@
+import base64
 from typing import Any, Dict
 from core import db
 from models import ApartmentInfo, ClientInfo
@@ -19,7 +20,7 @@ router = APIRouter(prefix="/pages", tags=["pages"])
 templates = Jinja2Templates(directory="templates")
 
 @router.get("/")
-def read_pages(request : Request, no : int, apt_id : int) -> Any:
+def read_pages(request : Request, apt_id : int) -> Any:
     with Session(db.engine) as session:
         apt_info = session.exec(select(ApartmentInfo).where(ApartmentInfo.id == apt_id)).first()
         if not apt_info:
@@ -65,7 +66,7 @@ def read_pages(request : Request, no : int, apt_id : int) -> Any:
         qr_code_data_uri = generate_qr_code_with_data(client_data, apartment_data)
         
         data = {
-            "id": f"{str(no).zfill(3)} : العدد",
+            "id": f"{str(client_info.no).zfill(3)} : العدد",
             "buildng": f"{str(apt_info.building)}",
             "floor": f"{str(apt_info.floor)}",
             "apartment": f"{str(apt_info.apt_no)}",
@@ -128,8 +129,16 @@ def read_page4(request : Request) -> Any:
     return templates.TemplateResponse("page/page4.html", {"request": request})
 
 @router.get("/page5")
-def read_page5(request : Request) -> Any:
-    return templates.TemplateResponse("page/page5.html", {"request": request})
+def read_page5(request : Request, apt_id : int) -> Any:
+    with Session(db.engine) as session:
+        apartment_info = session.exec(select(ApartmentInfo).where(ApartmentInfo.id == apt_id)).first()
+        if not apartment_info:
+            raise HTTPException(status_code=404, detail="Apartment not found")
+    if apartment_info.building in ['A2','A3','B1','B2','B3']:
+        years = '1.5 سنوات'
+    else:
+        years = '2.5 سنوات'
+    return templates.TemplateResponse("page/page5.html", {"request": request , 'years' : years})
 
 @router.get("/page6")
 def read_page6(request : Request) -> Any:
@@ -313,11 +322,11 @@ async def generate_direct_pdf(request: Request, client_id: int, current_user: Cu
     with tempfile.TemporaryDirectory() as temp_dir:
         # List of functions and parameters to render each page
         page_renderers = [
-            (read_pages, {"no": client_info.no, "apt_id": apartment_info.id}),
+            (read_pages, {"apt_id": apartment_info.id}),
             (read_page2, {"client_id": client_info.id}),
             (read_page3, {"apt_id": apartment_info.id}),
             (read_page4, {}),
-            (read_page5, {}),
+            (read_page5, {"apt_id": apartment_info.id}),
             (read_page6, {}),
             (read_page7, {}),
             (read_page8, {"apt_id": apartment_info.id}),
@@ -469,3 +478,48 @@ async def generate_direct_pdf(request: Request, client_id: int, current_user: Cu
                 media_type="application/pdf",
                 headers={"Content-Disposition": "attachment; filename=error.pdf"}
             )
+
+@router.get("/QR/{client_id}")
+def qr_generator(client_id : int) -> Any:
+    with Session(db.engine) as session:
+        client_info = session.exec(select(ClientInfo).where(ClientInfo.id == client_id)).first()
+        if not client_info:
+            raise HTTPException(status_code=404, detail="Client not found")
+        apt_info = session.exec(select(ApartmentInfo).where(ApartmentInfo.id == client_info.apt_id)).first()
+        if not apt_info:
+            raise HTTPException(status_code=404, detail="Apartment not found")
+        
+        # Prepare data for QR code - Client data first in Arabic
+        client_data = {
+            "معرف": client_info.id,
+            "العدد": client_info.no,
+            "الاسم": client_info.name,
+            "رقم الهوية": client_info.id_no,
+            "رقم الهاتف": client_info.phone_number,
+            "المهنة": client_info.job_title,
+            "تاريخ الإصدار": str(client_info.issue_date),
+            "رقم السجل": client_info.registry_no,
+            "رقم الصحيفة": client_info.newspaper_no,
+            "المحلة": client_info.m,
+            "الزقاق": client_info.z,
+            "الدار": client_info.d,
+            "اسم البديل": client_info.alt_name,
+            "صلة القرابة": client_info.alt_kinship,
+            "هاتف البديل": client_info.alt_phone,
+            "تاريخ الإنشاء": str(client_info.created_at)
+        }
+        
+        # Apartment data in Arabic
+        apartment_data = {
+            "معرف": apt_info.id,
+            "العمارة": apt_info.building,
+            "الطابق": apt_info.floor,
+            "رقم الشقة": apt_info.apt_no,
+            "المساحة": apt_info.area,
+            "سعر المتر": apt_info.meter_price,
+            "السعر الكلي": apt_info.area * apt_info.meter_price
+        }
+        
+        # Generate QR code with client data first
+        qr_code_data_uri = generate_qr_code_with_data(client_data, apartment_data)
+        return qr_code_data_uri

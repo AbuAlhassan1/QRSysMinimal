@@ -167,6 +167,7 @@ class ClientInfoBase(SQLModel):
     alt_d: int
     created_at: date = Field(default=date.today())
     apt_id: int = Field(foreign_key="apartment_info.id")
+    is_formal : int
 
 
 class ClientInfoCreate(ClientInfoBase):
@@ -193,6 +194,7 @@ class ClientInfoUpdate(ClientInfoBase):
     alt_d: Optional[int] = None
     created_at: Optional[date] = None
     apt_id: Optional[int] = None
+    is_formal : Optional[int] = None
 
 
 class ClientInfo(ClientInfoBase, table=True):

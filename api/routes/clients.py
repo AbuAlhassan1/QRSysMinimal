@@ -1,9 +1,10 @@
 from typing import Any, Optional
 
 from fastapi import APIRouter, HTTPException, Query
-from sqlmodel import func, select, or_, and_
+from sqlmodel import Session, func, select, or_, and_
 
 from api.deps import CurrentUser, SessionDep
+from core import db
 from models import (
     ClientInfo,
     ClientInfoCreate,
@@ -28,7 +29,7 @@ def read_clients(
     return clients
 
 
-@router.get("/filter", response_model=list[ClientInfoPublic])
+@router.get("/filter")
 def filter_clients(
     session: SessionDep,
     current_user: CurrentUser,
@@ -78,7 +79,26 @@ def filter_clients(
     
     # Execute query and return results
     clients = session.exec(query).all()
-    return clients
+    res = []
+    for i in clients:
+        apt = session.get(ApartmentInfo, i.apt_id)
+        data ={
+            'id' : i.id,
+            'name' : i.name,
+            'phone' : i.phone_number,
+            'id_no' : i.id_no,
+            'date' : i.created_at,
+            'job' : i.job_title,
+            'is_formal' : i.is_formal,
+            'apartment':{
+                'bulidng' : apt.building,
+                'floor' : apt.floor,
+                'room' : apt.apt_no
+            }
+        }
+        res.append(data)
+        
+    return res
 
 
 @router.get("/by-apartment/{apt_id}", response_model=list[ClientInfoPublic])
@@ -162,3 +182,4 @@ def delete_client(session: SessionDep, current_user: CurrentUser, id: int) -> Me
     session.delete(client)
     session.commit()
     return Message(message="Client deleted successfully")
+

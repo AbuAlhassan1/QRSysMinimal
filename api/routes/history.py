@@ -14,9 +14,20 @@ from models import (
     HistoryTypePublic,
     HistoryTypeUpdate,
     Message,
+    ClientInfo,
+    User
 )
+from pydantic import BaseModel
 
 router = APIRouter(tags=["history"])
+
+# Define a new model for the joined data
+class HistoryWithTypePublic(BaseModel):
+    id: int
+    type_id: int
+    datetime: Any
+    entity_id: int
+    history_type: HistoryTypePublic
 
 
 # History Types Routes
@@ -103,17 +114,50 @@ def delete_history_type(session: SessionDep, current_user: CurrentUser, id: int)
     return Message(message="History type deleted successfully")
 
 
-# History Entries Routes
-@router.get("/history", response_model=list[HistoryPublic], tags=["history-entries"])
-def read_histories(
+# # History Entries Routes
+# @router.get("/history", response_model=list[HistoryPublic], tags=["history-entries"])
+# def read_histories(
+#     session: SessionDep, current_user: CurrentUser, skip: int = 0, limit: int = 100
+# ) -> Any:
+#     """
+#     Retrieve history entries.
+#     """
+#     statement = select(History).offset(skip).limit(limit)
+#     histories = session.exec(statement).all()
+#     return histories
+
+
+@router.get("/history", response_model=list[dict], tags=["history-entries"])
+def read_histories_with_types(
     session: SessionDep, current_user: CurrentUser, skip: int = 0, limit: int = 100
 ) -> Any:
     """
-    Retrieve history entries.
+    Retrieve history entries with joined history type data.
     """
+    # Using relationship loading
     statement = select(History).offset(skip).limit(limit)
     histories = session.exec(statement).all()
-    return histories
+    
+    # Manually construct the response with nested history_type data
+    result = []
+    for history in histories:
+        history_type = session.get(HistoryType, history.type_id)
+        history_data = {
+            "id": history.id,
+            "type_id": history.type_id,
+            "datetime": history.datetime,
+            "entity_id": history.entity_id,
+            "history_type": {
+                "id": history_type.id,
+                "name": history_type.name
+            },
+            "user_info" :{
+                "name" : current_user.full_name
+            }
+        }
+        result.append(history_data)
+    
+    return result
 
 
 @router.get("/history/by-type/{type_id}", response_model=list[HistoryPublic], tags=["history-entries"])
@@ -196,4 +240,4 @@ def delete_history(session: SessionDep, current_user: CurrentUser, id: int) -> M
     
     session.delete(history)
     session.commit()
-    return Message(message="History entry deleted successfully") 
+    return Message(message="History entry deleted successfully")

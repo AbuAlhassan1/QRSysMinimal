@@ -2,6 +2,7 @@
 {% block Content %}
 <link rel="stylesheet" href="{{ request.url_for('static', path='css/base.css') }}">
 <link rel="stylesheet" href="{{ request.url_for('static', path='css/page3.css') }}">
+
 <div class="page3">
     <div class="header">
         <div>التاريخ : {{ data.date }}</div>
@@ -13,7 +14,7 @@
     <div class="c1">تم الاتفاق بين الطرفين على أن يقوم الطرف الأول ببيع الوحدة السكنية إلى الطرف الثاني:</div>
     
     <div class="section-title">❖ الوحدة السكنية محل العقد:</div>
-    <div style="display: flex; flex-direction: column; font-family: sans-serif; gap: 4px; max-width: 800px;">
+    <div class='talzig' style="display: flex; flex-direction: column; gap: 4px; max-width: 800px;">
 
         <!-- Row 1 -->
         <div style="display: flex; align-items: flex-start;">
@@ -43,7 +44,7 @@
       
     
     <div class="section-title">❖ التزامات الطرف الثاني:</div>
-    <div class="c2">
+    <div class="c2 talzig">
         <ol>
             <li>يلتزم بجلب وصل الإيداع بالمبلغ المتفق عليه من المصرف الذي يتم تحديده من قبل الطرف الأول ويكون الإيداع باسم (شركة خيرات الدر للتجارة والمقاولات العامة والخدمات العامة محدودة أو الحساب المصرفي الذي يقوم الطرف الأول بإعطائه إلى الطرف الثاني).</li>
             <li>يقر الطرف الثاني بعلمه بمواعيد تسليم المستحقات الذي بذمته وفق جدول تسديد المبالغ المستلم منه من الطرف الأول ويعتبر هذا الجدول ملحق عقد وجزء لا يتجزأ منه ومكملاً له مع مراعاة طريقة بيع الوحدة السكنية.</li>
