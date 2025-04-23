@@ -2,7 +2,7 @@
 {% block Content %}
 <link rel="stylesheet" href="{{ url_for('static', path='css/base.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', path='css/page2.css') }}">
-<div class="page2">
+<div class="page2" style="font-size: 0.9em;">
     <div class="header">
         <div>التاريخ : {{ data.date }}</div>
         <div>العدد : {{ data.id }}</div>
@@ -38,31 +38,28 @@
         <div style="display: flex; align-items: flex-start;">
           <div style="width: 140px; text-align: right;">رقم البطاقة الموحدة</div>
           <div style="width: 10px; text-align: center;">:</div>
-          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.unified_card_number }}</div>
+          <div style="width: 100px; text-align: right; direction: rtl;">{{ data.unified_card_number }}</div>
+          
+          
+          <div style="width: 70px; text-align: right;">رقم الهوية</div>
+          <div style="width: 5px; text-align: center;">:</div>
+          <div style="width: 100px; text-align: right; direction: rtl;">{{ data.id_number }}</div>
+          
+          
+          <div style="width: 70px; text-align: right;">رقم السجل</div>
+          <div style="width: 5px; text-align: center;">:</div>
+          <div style="width: 50px; text-align: right; direction: rtl;">{{ data.registry_number }}</div>
+          
+          
+          <div style="width: 72px; text-align: right;">رقم الصحيفة</div>
+          <div style="width: 5px; text-align: center;">:</div>
+          <div style="width: 10px; text-align: right; direction: rtl;">{{ data.newspaper_number }}</div>
         </div>
-      
-        <div style="display: flex; align-items: flex-start;">
-          <div style="width: 140px; text-align: right;">رقم الهوية</div>
-          <div style="width: 10px; text-align: center;">:</div>
-          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.id_number }}</div>
-        </div>
-      
+
         <div style="display: flex; align-items: flex-start;">
           <div style="width: 140px; text-align: right;">تاريخ الاصدار</div>
           <div style="width: 10px; text-align: center;">:</div>
-          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.issue_date }}</div>
-        </div>
-      
-        <div style="display: flex; align-items: flex-start;">
-          <div style="width: 140px; text-align: right;">رقم السجل</div>
-          <div style="width: 10px; text-align: center;">:</div>
-          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.registry_number }}</div>
-        </div>
-      
-        <div style="display: flex; align-items: flex-start;">
-          <div style="width: 140px; text-align: right;">رقم الصحيفة</div>
-          <div style="width: 10px; text-align: center;">:</div>
-          <div style="flex: 1; text-align: right; direction: rtl;">{{ data.newspaper_number }}</div>
+          <div style="width: 200px; text-align: right; direction: rtl;">{{ data.issue_date }}</div>
         </div>
       
         <div style="display: flex; align-items: flex-start;">
@@ -85,8 +82,7 @@
           <div style="flex: 1; text-align: right; direction: rtl;">{{ data.job_title }}</div>
         </div>
       </div>
-      <hr>
-      <div style="margin-top: 12px; font-weight: bold; font-size: 1em;">في حالة تعذر الوصول إلى المشتري يتم الاتصال على:</div>
+      <div style="margin:10px 0 5px 0;font-weight: bold; font-size: 1em;">في حالة تعذر الوصول إلى المشتري يتم الاتصال على:</div>
       
       <div class='talzig' style="display: flex; flex-direction: column; gap: 2px; max-width: 800px;">
         <div style="display: flex; align-items: flex-start;">

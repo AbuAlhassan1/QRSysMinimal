@@ -17,12 +17,25 @@
 
 body, html {
     font-family: 'CustomFont', Arial, sans-serif;
-    line-hight
 }
 
 *{
     line-height: 0.9 !important;
+    font-size: 20px !important;
+}
+
+.page-number {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
     font-size: 17px !important;
+    color: #333;
+}
+
+.a4-page {
+    position: relative;
+    width: 210mm;
+    min-height: 297mm;
 }
 </style>
     
@@ -34,6 +47,10 @@ body, html {
                 
             {% endblock %}
         </div>
+        
+        {% if page_number is defined %}
+        <div class="page-number">{{ page_number }}</div>
+        {% endif %}
     </div>
 </body>
 </html>

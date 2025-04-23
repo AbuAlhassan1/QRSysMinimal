@@ -4,8 +4,19 @@
 <link rel="stylesheet" href="{{ request.url_for('static', path='css/page3.css') }}">
 <div class="page3">
     <style>
-        img{
-            height: 600px;
+        .img-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            width: 180mm;
+            height: 180mm;
+            overflow: hidden;
+        }
+        .img-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
         .page{
             display: flex;
@@ -13,12 +24,21 @@
             align-items: center;
             justify-content: center;
         }
+        .title{
+            font-size: 35px !important;
+            font-weight: bold;
+            text-align: center;
+            padding:0;
+            margin:10px
+        }
     </style>
     <div class="page">
-        <h1>ملحق رقم 03</h1>
-        <h1>مخطط الوحدة المباعة</h1>
-        <img src="{{ request.url_for('static', path='photos/' + data.aptType + '.png') }}" alt="Photo Not Found">
-    </div>
+        <h1 class="title">ملحق رقم 03</h1>
+        <h1 class="title">مخطط الوحدة المباعة</h1>
+        <div class="img-container">
+            <img src="{{ request.url_for('static', path='photos/' + data.aptType + '.png') }}" alt="Photo Not Found">
+       </div>
+       </div>
 
     
 </div>

@@ -4,35 +4,48 @@
 <link rel="stylesheet" href="{{ request.url_for('static', path='css/page3.css') }}">
 <div class="page3">
     <style>
-        .details img{
+        .details img {
             height: 300px;
         }
-        .page{
+
+        .page {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 20px;
         }
-        .details{
+
+        .title {
+            font-size: 35px !important;
+            font-weight: bold;
+            text-align: center;
+            padding: 0;
+            margin: 10px
+        }
+
+        .details {
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
             gap: 20px;
         }
-        li{
-            font-weight: bold;
+
+        li {
+            margin: 5px;
         }
-        .sales{
+
+        .sales {
             height: 200px;
         }
     </style>
     <div class="page">
-        <h1>ملحق رقم 04</h1>
-        <h1>مواصفات الوحدة المباعة</h1>
+        <h1 class="title">ملحق رقم 04</h1>
+        <h1 class="title">مواصفات الوحدة المباعة</h1>
         <div class="details">
             <div>
+                {% if data.building and data.building[0] == "A" %}
                 <h1>تتالف الشقة للنمط A</h1>
                 <ol>
                     <li>مدخل</li>
@@ -47,12 +60,32 @@
                     <li>شرفة خارجية لصالة الاستقبال</li>
                     <li>شرفة خارجية للمطبخ</li>
                 </ol>
+                {% elif data.building and data.building[0] == "B" %}
+                <h1>تتالف الشقة للنمط B</h1>
+                <ol>
+                    <li>مدخل</li>
+                    <li>موزع للغرف و الصالة</li>
+                    <li>مطبخ حار، مطبخ بارد</li>
+                    <li>صالة جلوس</li>
+                    <li>صالة طعام</li>
+                    <li>حمامين</li>
+                    <li>مخزن</li>
+                    <li>غرفة نوم رئيسية</li>
+                    <li>غرفة نوم للأطفال</li>
+                    <li>شرفة خارجية لغرفة النوم</li>
+                    <li>شرفة خارجية للمطبخ</li>
+                </ol>
+                {% else %}
+
+                {% endif %}
+
             </div>
-            <img src="{{ request.url_for('static', path='photos/' + data.aptType + 'x' + '.png') }}" alt="Photo Not Found">
+            <img src="{{ request.url_for('static', path='photos/' + data.aptType + 'x' + '.png') }}"
+                alt="Photo Not Found">
         </div>
         <img src="{{ request.url_for('static', path='photos/sales.jpeg') }}" alt="Photo Not Found" class="sales">
     </div>
 
-    
+
 </div>
 {% endblock %}

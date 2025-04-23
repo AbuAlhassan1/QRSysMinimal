@@ -4,35 +4,54 @@
     
 
     <style>
-        section{
+        .mcol{
             display: flex;;
             align-items: center;
             justify-content: center;
+            gap:20px;
         }
         .col{
             display: flex;
             flex-direction: column;
             align-items: end;
             justify-content: center;
+            gap:30px
+        }
+        .coln{
+            align-items:center !important;
+        }
+        h1{
+            font-size: 35px !important;
+            padding:0;
+            margin:0;
+        }
+        .content {
+            position: absolute;
+            top: 250px !important; /* Adjusted to start below the header area */
+            left: 50px;
+            right: 50px;
+            bottom: 150px !important; /* Adjusted to end above the footer area */
+            background-color: transparent;
+            padding: 20px;
         }
     </style>
-    <div>
+    <div class="details">
         <span>{{ data.id }}</span>
-        <section>
-            <section class='col'>
+        <section class='mcol'>
+            <section class='col coln'>
                 <h1>{{ data.buildng }}</h1>
                 <h1>{{ data.floor }}</h1>
                 <h1>{{ data.apartment }}</h1>
             </section>
             <section class='col'>
-                <h1>&nbsp;&nbsp;|&nbsp;&nbsp;</h1>
-                <h1>&nbsp;&nbsp;|&nbsp;&nbsp;</h1>
-                <h1>&nbsp;&nbsp;|&nbsp;&nbsp;</h1>
+                <h1>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+                <h1>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+                <h1>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h1>
             </section>
             <section class='col'>
                 <h1>العمارة</h1>
                 <h1>الطابق</h1>
-                <h1>الشقة</h1>
+                <h1>رقم الشقة</h1>
             </section>
         </section>
     </div>

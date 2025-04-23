@@ -1,0 +1,2 @@
+Set objShell = CreateObject("WScript.Shell")
+objShell.Run "C:\development\QRSysMinimal\run_batch.bat", 0, False
