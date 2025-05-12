@@ -142,6 +142,7 @@ def read_histories_with_types(
     result = []
     for history in histories:
         history_type = session.get(HistoryType, history.type_id)
+        user = session.get(User, history.user_id)
         history_data = {
             "id": history.id,
             "type_id": history.type_id,
@@ -152,7 +153,7 @@ def read_histories_with_types(
                 "name": history_type.name
             },
             "user_info" :{
-                "name" : current_user.full_name
+                "name" : user.full_name
             }
         }
         result.append(history_data)
@@ -194,6 +195,7 @@ def create_history(
         raise HTTPException(status_code=403, detail="Not enough permissions")
         
     history = History.model_validate(history_in)
+    history.user_id = current_user.id
     session.add(history)
     session.commit()
     session.refresh(history)

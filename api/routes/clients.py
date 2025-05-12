@@ -36,7 +36,7 @@ def filter_clients(
     name: Optional[str] = None,
     id_no: Optional[int] = None,
     phone_number: Optional[str] = None,
-    building: Optional[int] = None,
+    building: Optional[str] = None,
     floor: Optional[int] = None,
     apt_no: Optional[int] = None,
     skip: int = 0,
@@ -62,7 +62,7 @@ def filter_clients(
     
     # Apartment filters
     if building:
-        filters.append(ApartmentInfo.building.contains(str(building)))
+        filters.append(ApartmentInfo.building.contains(building))
     
     if floor:
         filters.append(ApartmentInfo.floor.contains(str(floor)))

@@ -54,6 +54,8 @@ def create_apartment_client_payment(
     client_data = data.client.model_dump()
     client_data["apt_id"] = apartment.id  # Set the apartment ID
     client = ClientInfo.model_validate(client_data)
+    if 'c' in apartment.building or 'C' in apartment.building:
+        client.is_formal = 0
     session.add(client)
     session.flush()  # Flush to get the client ID without committing
     

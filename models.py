@@ -162,9 +162,9 @@ class ClientInfoBase(SQLModel):
     alt_name: str
     alt_kinship: str
     alt_phone: str
-    alt_m: int
-    alt_z: int
-    alt_d: int
+    alt_m: str
+    alt_z: str
+    alt_d: str
     created_at: date = Field(default=date.today())
     apt_id: int = Field(foreign_key="apartment_info.id")
     is_formal : int
@@ -189,9 +189,9 @@ class ClientInfoUpdate(ClientInfoBase):
     alt_name: Optional[str] = None
     alt_kinship: Optional[str] = None
     alt_phone: Optional[str] = None
-    alt_m: Optional[int] = None
-    alt_z: Optional[int] = None
-    alt_d: Optional[int] = None
+    alt_m: Optional[str] = None
+    alt_z: Optional[str] = None
+    alt_d: Optional[str] = None
     created_at: Optional[date] = None
     apt_id: Optional[int] = None
     is_formal : Optional[int] = None
@@ -289,6 +289,7 @@ class HistoryBase(SQLModel):
     type_id: int = Field(foreign_key="history_types.id")
     datetime: datetime
     entity_id : int
+    user_id : str
 
 
 class HistoryCreate(HistoryBase):
@@ -299,6 +300,7 @@ class HistoryUpdate(HistoryBase):
     type_id: Optional[int] = None
     datetime: Optional[datetime] = None
     entity_id : int
+    user_id : int
 
 
 class History(HistoryBase, table=True):

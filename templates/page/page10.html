@@ -1,104 +1,130 @@
-{% extends 'page.html' %}
-{% block Content %}
-<link rel="stylesheet" href="{{ request.url_for('static', path='css/base.css') }}">
-<link rel="stylesheet" href="{{ request.url_for('static', path='css/page3.css') }}">
+{% extends 'page.html' %} {% block Content %}
+<link
+  rel="stylesheet"
+  href="{{ request.url_for('static', path='css/base.css') }}"
+/>
+<link
+  rel="stylesheet"
+  href="{{ request.url_for('static', path='css/page3.css') }}"
+/>
 <div class="page3">
-    <style>
-        .page{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .title{
-            font-size: 35px !important;
-            font-weight: bold;
-            text-align: center;
-            padding:0;
-            margin:10px
-        }
-        .payment , .notes{
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-            justify-content: center;
-            width: 100%;
-        }
-        .payment li{
-            font-size: 15px;
-        }
-        ul{
-            text-align: justify;
-        }
-        .notes li{
-            font-size: 15px;
-            margin: 5px;
-            text-align: justify;
-        }
-        .signatures{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
-        .first , .second{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-    </style>
-    <div class="page">
-        <h1 class="title">ملحق رقم 05</h1>
-        <h1 class="title">سعر العقار</h1>
-        <div class="payment" style="max-width: 600px;">
-            <ul style="list-style: none; padding: 0; margin: 0;">
-                <!-- Row 1 -->
-                <li style="display: flex; align-items: baseline; margin-bottom: 4px;">
-                    <span style="width: 160px; text-align: right;">مساحة الوحدة السكنية</span>
-                    <span style="width: 10px; text-align: center;">:</span>
-                    <span style="flex: 1; text-align: right; direction: rtl;">{{ data.area }}م<sup>2</sup></span>
-                </li>
-        
-                <!-- Row 2 -->
-                <li style="display: flex; align-items: baseline; margin-bottom: 4px;">
-                    <span style="width: 160px; text-align: right;">سعر المتر المربع</span>
-                    <span style="width: 10px; text-align: center;">:</span>
-                    <span style="flex: 1; text-align: right; direction: rtl;">{{ data.price }}&nbsp;دينار عراقي</span>
-                </li>
-        
-                <!-- Row 3 -->
-                <li style="display: flex; align-items: baseline;">
-                    <span style="width: 160px; text-align: right;">السعر الكلي</span>
-                    <span style="width: 10px; text-align: center;">:</span>
-                    <span style="flex: 1; text-align: right; direction: rtl;">{{ data.full }}&nbsp;دينار عراقي</span>
-                </li>
-            </ul>
-        </div>
-        
-        <hr style="width: 100%;">
-        <div class="notes">
-            <h1>ملاحظات :</h1>
-            <ol>
-                <li>يتم فرض غرامات تأخيريه على الطرف الثاني في حال تأخر عن تسديد الدفعات التي بذمته حسب شروط العقد في بند التزامات الطرف الثاني الفقرة ثالثاً منه.</li>
-                <li>في حال عدم الالتزام بتسديد المستحقات المالية بذمة الطرف الثاني يتم توجيه إنذار للتسديد خلال مدة أقصاها (7 أيام) وبخلافة يتم فسخ العقد دون الحاجة إلى أعذار أو إنذار أو استصدار حكم قضائي.</li>
-                <li>يلتزم الطرف الثاني بإتمام آلية تسديد مبلغ القرض من المصرف العقاري واستلام وصل استلام الصك من قبل الطرف الأول وخلال مدة (أسبوعين) وبخلافة يعتبر الطرف الثاني مخل بالتزاماته ويعتبر عقد الوحدة السكنية لاغياً دون الحاجة إلى أعذار أو إنذار أو استصدار حكم قضائي.</li>
-            </ol>
-        </div>
-        <div class="signatures">
-            <div class="first">
-                <h1>الطرف الأول</h1>
-                <h2>السيد / السيدة : {{ data.name}}</h2>
-            </div>
-            <div class="second">
-                <h1>الطرف الثاني</h1>
-                <h2>شركة بەرەو لوتکە (نحو القمة)
-                    المفوض</h2>
-            </div>
-        </div>
+  <style>
+    .page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .title {
+      font-size: 35px !important;
+      font-weight: bold;
+      text-align: center;
+      padding: 0;
+      margin: 10px;
+    }
+    .payment,
+    .notes {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+      width: 100%;
+    }
+    .payment li {
+      font-size: 15px;
+    }
+    ul {
+      text-align: justify;
+    }
+    .notes li {
+      font-size: 15px;
+      margin: 5px;
+      text-align: justify;
+    }
+    .signatures {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      width: 100%;
+      gap: 20px;
+    }
+    .first,
+    .second {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+  <div class="page">
+    <h1 class="title">ملحق رقم 05</h1>
+    <h1 class="title">سعر العقار</h1>
+    <div class="payment" style="max-width: 600px">
+      <ul style="list-style: none; padding: 0; margin: 0">
+        <!-- Row 1 -->
+        <li style="display: flex; align-items: baseline; margin-bottom: 4px">
+          <span style="width: 160px; text-align: right"
+            >مساحة الوحدة السكنية</span
+          >
+          <span style="width: 10px; text-align: center">:</span>
+          <span style="flex: 1; text-align: right; direction: rtl"
+            >{{ data.area }}م<sup>2</sup></span
+          >
+        </li>
+
+        <!-- Row 2 -->
+        <li style="display: flex; align-items: baseline; margin-bottom: 4px">
+          <span style="width: 160px; text-align: right">سعر المتر المربع</span>
+          <span style="width: 10px; text-align: center">:</span>
+          <span style="flex: 1; text-align: right; direction: rtl"
+            >{{ data.price }}&nbsp;دينار عراقي</span
+          >
+        </li>
+
+        <!-- Row 3 -->
+        <li style="display: flex; align-items: baseline">
+          <span style="width: 160px; text-align: right">السعر الكلي</span>
+          <span style="width: 10px; text-align: center">:</span>
+          <span style="flex: 1; text-align: right; direction: rtl"
+            >{{ data.full }}&nbsp;دينار عراقي</span
+          >
+        </li>
+      </ul>
     </div>
 
-    
+    <hr style="width: 100%" />
+    <div class="notes">
+      <h1>ملاحظات :</h1>
+      <ol>
+        <li>
+          يتم فرض غرامات تأخيريه على الطرف الثاني في حال تأخر عن تسديد الدفعات
+          التي بذمته حسب شروط العقد في بند التزامات الطرف الثاني الفقرة ثالثاً
+          منه.
+        </li>
+        <li>
+          في حال عدم الالتزام بتسديد المستحقات المالية بذمة الطرف الثاني يتم
+          توجيه إنذار للتسديد خلال مدة أقصاها (7 أيام) وبخلافة يتم فسخ العقد دون
+          الحاجة إلى أعذار أو إنذار أو استصدار حكم قضائي.
+        </li>
+        <li>
+          يلتزم الطرف الثاني بإتمام آلية تسديد مبلغ القرض من المصرف العقاري
+          واستلام وصل استلام الصك من قبل الطرف الأول وخلال مدة (أسبوعين) وبخلافة
+          يعتبر الطرف الثاني مخل بالتزاماته ويعتبر عقد الوحدة السكنية لاغياً دون
+          الحاجة إلى أعذار أو إنذار أو استصدار حكم قضائي.
+        </li>
+      </ol>
+    </div>
+    <div class="signatures">
+      <div class="first">
+        <h1>الطرف الأول</h1>
+        <h2>السيد / السيدة : {{ data.name}}</h2>
+      </div>
+      <div class="second">
+        <h1>الطرف الثاني</h1>
+        <h2>شركة بەرەو لوتکە (نحو القمة) المفوض</h2>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
